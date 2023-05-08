@@ -34,11 +34,12 @@ public class GraphMaker implements IGraphMaker {
 
                 // only add edge beyond a threshold
 
-                int weight = (int)(100 * weightFloat);
+//                int weight = (int)(100 * weightFloat);
                 // undirected graph
-                g.addEdge(v, w, weight);
-                g.addEdge(w, v, weight);
-
+//                g.addEdge(v, w, weight);
+//                g.addEdge(w, v, weight);
+                g.addEdge(v, w, (int) weightFloat);
+                g.addEdge(w, v, (int) weightFloat);
 
             }
 
