@@ -13,7 +13,7 @@ public class AttractivesMap {
     private int nextVertex(HashSet<Integer> nodes, Map<Integer, Integer> shortest) {
         int nextVertex = 0;
         double minDis = Integer.MAX_VALUE;
-        for (Integer node: nodes) {
+        for (Integer node : nodes) {
             if (shortest.get(node) < minDis) {
                 minDis = shortest.get(node);
                 nextVertex = node;
@@ -24,9 +24,9 @@ public class AttractivesMap {
     }
 
 
-
     /**
      * returns the neighbor attractions
+     *
      * @param id
      * @return
      */
@@ -38,6 +38,7 @@ public class AttractivesMap {
      * Dijkstra's algorithm find out shortest path from a given vertex
      * as the user tours, edges can get updated
      * return a list of most similar attractions
+     *
      * @param src
      * @return
      */
@@ -52,7 +53,7 @@ public class AttractivesMap {
         HashSet<Integer> nodes = new HashSet<>();
 
         // creates shortest and pred array for the attractions
-        for (int i = 1; i < nodeCount; i ++) {
+        for (int i = 1; i < nodeCount; i++) {
             nodes.add(i);
             if (i == src) {
                 shortest.put(i, 0);
@@ -66,7 +67,7 @@ public class AttractivesMap {
 
         while (nodes.size() != 0) {
             nodes.remove(u);
-            for (int v: this.getNeighbors(u)) {
+            for (int v : this.getNeighbors(u)) {
                 // remove edge in the other direction
                 delEdges.put(v, u);
                 this.g.removeEdge(v, u);
@@ -104,6 +105,7 @@ public class AttractivesMap {
 
     /**
      * generate suggestion list with given count
+     *
      * @param count to display
      * @return list of suggestions
      */
@@ -126,7 +128,5 @@ public class AttractivesMap {
 
         return finalResult;
     }
-
-
 
 }
