@@ -4,14 +4,25 @@ Our project delivers an all-in-one solution for planning theme park visits, maki
 ## 🌟 Features 🌟
 
 
-1. 📍 'Find the Closest Route Between Two Attractions': This feature enables users to input the names of two attractions and returns the shortest path between them. We employ the A* pathfinding algorithm to swiftly identify the most efficient route.
+1. 📍 'Find the Closest Route Between Two Attractions': 
 
-2. 🔎 'Discover Recommended Attractions Based on Interests': This feature offers personalized suggestions for new attractions, tailored to the visitor's preferences.
+This feature enables users to input the names of two attractions and returns the shortest path between them. We employ the A* pathfinding algorithm to swiftly identify the most efficient route.
 
-3. 📋 'List Attractions by Type within Specified Boundaries': This function helps users find available attractions within a given category and range, streamlining the search process.
+2. 🔎 'Discover Recommended Attractions Based on Interests':
 
-4. ♿ 'Obtain Wheelchair-Friendly Routes': Our navigation system provides wheelchair-accessible routes throughout the park, utilizing various algorithms to ensure an inclusive and enjoyable experience for all visitors.
-5. 🗺️ 'List Attractions within Specified Boundaries': Specify the upper left and lower right coordinates of a boundary and a preferred attraction type. Our planner will display a list of attractions that fall within that area.
+This feature offers personalized suggestions for new attractions, tailored to the visitor's preferences.
+
+3. 📋 'List Attractions by Type within Specified Boundaries': 
+
+This function helps users find available attractions within a given category and range, streamlining the search process.
+
+4. ♿ 'Obtain Wheelchair-Friendly Routes': 
+
+Our navigation system provides wheelchair-accessible routes throughout the park, utilizing various algorithms to ensure an inclusive and enjoyable experience for all visitors.
+
+6. 🗺️ 'List Attractions within Specified Boundaries': 
+
+Specify the upper left and lower right coordinates of a boundary and a preferred attraction type. Our planner will display a list of attractions that fall within that area.
 
 The Ultimate Theme Park Planner streamlines your visit, ensuring a memorable and enjoyable experience. Our powerful application combines innovative algorithms and user-friendly features to make your adventure hassle-free. Try it today and make the most of your time at the park! 🎉
 
