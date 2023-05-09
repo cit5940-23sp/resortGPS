@@ -32,12 +32,23 @@ public class MapGraph {
         UnionFind uf = new UnionFind(n);
 
         // Step 1: Sort all the edges in the graph in non-decreasing order of their weights.
-        PriorityQueue<Edge> pq = new PriorityQueue<>(Comparator.comparingInt(o -> o.weight));
+        PriorityQueue<Edge> pq = new PriorityQueue<>((o1, o2) -> {
+            // Prioritize wheelchair-friendly paths
+            if (o1.isWheelchairFriendly && !o2.isWheelchairFriendly) {
+                return -1;
+            }
+            if (!o1.isWheelchairFriendly && o2.isWheelchairFriendly) {
+                return 1;
+            }
+            // Compare by weight
+            return Integer.compare(o1.weight, o2.weight);
+        });
         for (int i = 0; i < n; i++) {
             int[] neighbors = g.neighbors(i);
             for (int neighbor : neighbors) {
                 int weight = g.weight(i, neighbor);
-                pq.add(new Edge(i, neighbor, weight));
+                boolean isWheelchairFriendly = g.isWheelchairFriendly(i, neighbor);
+                pq.add(new Edge(i, neighbor, weight, isWheelchairFriendly));
             }
         }
 
@@ -91,11 +102,14 @@ public class MapGraph {
 
     private class Edge {
         int src, dest, weight;
+        boolean isWheelchairFriendly;
 
-        Edge(int src, int dest, int weight) {
+        // Constructor
+        public Edge(int src, int dest, int weight, boolean isWheelchairFriendly) {
             this.src = src;
             this.dest = dest;
             this.weight = weight;
+            this.isWheelchairFriendly = isWheelchairFriendly;
         }
     }
 

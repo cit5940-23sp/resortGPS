@@ -91,5 +91,5 @@ public interface Graph
     int[] neighbors(int v);
 
 
-
+    boolean isWheelchairFriendly(int i, int neighbor);
 }
