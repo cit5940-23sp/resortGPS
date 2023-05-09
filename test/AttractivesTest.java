@@ -34,6 +34,12 @@ public class AttractivesTest {
         suggestionList = am.playSuggestion(10);
         finalRes = am.generateSuggestions(3, true);
         System.out.println(finalRes);
+
+        GraphMaker gm2 = new GraphMaker();
+        int res2  = gm.readWeights("real_map_similarity.mtx");
+        AttractivesMap am2 = new AttractivesMap(gm.getGraph());
+        List<Integer> suggestionList2 = am.playSuggestion(1);
+        System.out.println(suggestionList);
     }
 
 }
