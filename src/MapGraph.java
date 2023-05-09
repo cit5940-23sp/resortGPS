@@ -7,6 +7,24 @@ public class MapGraph {
         this.g = g;
     }
 
+    public List<Integer> covered(int ulX, int ulY, int lrX, int lrY) {
+
+        int size = this.g.nodeCount();
+        List<Integer> res = new ArrayList<>();
+
+        for (int i = 1; i < size; i++) {
+            Coordinates current = this.g.getCord(i);
+
+            if (current.getX() >= ulX && current.getX() <= lrX) {
+                if (current.getY() >= ulY && current.getY() <= lrY) {
+                    res.add(i);
+                }
+            }
+        }
+        return res;
+
+    }
+
 
     private double heuristic(int currentNode, int destNode) {
 
