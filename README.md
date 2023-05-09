@@ -1,5 +1,4 @@
 # 🎢🎡🎠 Welcome to the Ultimate Theme Park Planner! 🎠🎡🎢
--------------------------------------------------
 Our project delivers an all-in-one solution for planning theme park visits, making use of innovative algorithms and offering a range of user-friendly features. From finding the shortest path between attractions to personalized recommendations, time-bound suggestions, and wheelchair-accessible routes, the Ultimate Theme Park Planner has you covered!
 
 </div>
@@ -19,6 +18,7 @@ The Ultimate Theme Park Planner streamlines your visit, ensuring a memorable and
 
 </div>
 ## ✨ Map Preview ✨
+
 ![image](https://user-images.githubusercontent.com/55269993/237035860-f95344cc-337f-4ad5-b52e-09b2ca5d5a32.png)
 
 
