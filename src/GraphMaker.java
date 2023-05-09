@@ -75,7 +75,7 @@ public class GraphMaker implements IGraphMaker {
             BufferedReader buffReader = new BufferedReader(fileReader);
 
             String line = buffReader.readLine();
-            String[] arrOfStr = line.split(" ", 2);
+            String[] arrOfStr = line.split(" ", 1);
             res = Integer.valueOf(arrOfStr[0]);
             // construct the graph
 
@@ -108,7 +108,7 @@ public class GraphMaker implements IGraphMaker {
             BufferedReader buffReader = new BufferedReader(fileReader);
 
             String line = buffReader.readLine();
-            String[] arrOfStr = line.split(" ", 2);
+            String[] arrOfStr = line.split(" ", 1);
             res = Integer.valueOf(arrOfStr[0]);
             // construct the graph
 

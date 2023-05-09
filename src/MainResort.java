@@ -3,7 +3,48 @@ import java.util.*;
 public class MainResort {
 
     public static void main(String[] args) {
-    /*
+        // reads into graph
+        GraphMaker timeGraph = new GraphMaker();
+        timeGraph.readWeights("real_map_time_weights.mtx");
+
+        GraphMaker physicalGraph = new GraphMaker();
+        physicalGraph.readWeights("real_map_dis_weight.mtx");
+        physicalGraph.readCords("real_map_cords.mtx");
+
+        GraphMaker attractionGraph = new GraphMaker();
+        attractionGraph.readWeights("real_map_similarity.mtx");
+
+        // initiate our map processor class
+        MapGraph physicalMap = new MapGraph(physicalGraph.getGraph());
+        MapGraph timeMap = new MapGraph(timeGraph.getGraph());
+        AttractivesMap attractions = new AttractivesMap(attractionGraph.getGraph());
+
+        GraphMaker names = new GraphMaker();
+        HashMap<Integer, String> res  = names.readNames("real_map_names.mtx");
+
+        System.out.println("--------------------------------------------------------");
+        System.out.println("------------------Welcome to our park!------------------");
+        System.out.println("--------------------------------------------------------");
+
+        System.out.println("This is the park GPS.");
+        System.out.println("We have the following attractions.");
+        System.out.println("You can use our GPS to go anywhere you want!");
+        System.out.println("--------------------------------------------------------");
+
+        for (Map.Entry<Integer, String> name : res.entrySet()) {
+            System.out.print(name.getValue() + " ");
+        }
+
+
+
+
+
+
+
+        /*
+
+
+
         Scanner in = new Scanner(System.in);
         String userInput;
         boolean newSearch;
@@ -83,8 +124,8 @@ public class MainResort {
             }
         } while (true);
         in.close();
-    }
 
          */
     }
 }
+
