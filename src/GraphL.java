@@ -144,7 +144,10 @@ public class GraphL implements Graph {
 
     public boolean isWheelChairFriendly(int u, int v) {
         Edge e = find(u, v);
-        return this.isWheelChairFriendly.get(e);
+        // Check if the edge is present in the HashMap and return the corresponding value.
+        // Return false if the edge is not present in the HashMap.
+        Boolean isFriendly = this.isWheelChairFriendly.get(e);
+        return isFriendly != null ? isFriendly : false;
     }
 
     public void setWheelChairFriendly(int u, int v, boolean isWheel) {

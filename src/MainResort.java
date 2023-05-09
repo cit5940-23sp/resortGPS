@@ -91,8 +91,7 @@ public class MainResort {
             System.out.println("1 to find the closest route from one attraction to another");
             System.out.println("2 to find recommended attractions based on types");
             System.out.println("3 to find a list of attractions to visit given a time frame in minutes");
-            System.out.println("4 to find the neighbor stops");
-            System.out.println("5 Wheelchair-Friendly Routes. ");
+            System.out.println("4 Wheelchair-Friendly Routes. ");
             System.out.println("q to quit");
             userInput = in.next();
             if (userInput.equals("q"))
@@ -166,6 +165,7 @@ public class MainResort {
 
 
             }
+
             /*else if (userInput.equals("3")) {
                 in.nextLine(); // Consume the newline character after the user input
 
@@ -181,17 +181,27 @@ public class MainResort {
                 for (Attraction a : attractionsToVisit) {
                     System.out.println(a.getName());
                 }
-            } else if (userInput.equals("4")) {
+            } */
+            else if (userInput.equals("4")) {
                 in.nextLine();
                 do {
                     System.out.println();
-                    System.out.println("Please enter the attractions you want to visit separated by commas:");
-                    String attractionsStr = in.nextLine();
-                    String[] attractions = attractionsStr.split(",");
-                    List<String> attractionList = Arrays.asList(attractions);
-
-                    System.out.println("Cheapest transport path: " + pMap.findCheapestTransportPath(attractionList));
-                    newSearch = true;
+                    System.out.println("------------------------------------------------------------------");
+                    System.out.println("------------------------------------------------------------------");
+                    System.out.println("Our park wants to create an inclusive and enjoyable theme park " );
+                    System.out.println("experience for all visitors, regardless of their mobility needs.");
+                    System.out.println("Just let me know where you are, I will provide everywhere that you can go :)");
+                    System.out.println("Please input your position, eg : 1");
+                    int srcNode = Integer.valueOf(in.nextLine());
+                    List<Integer> mstPath = physicalMap.getMSTPath(srcNode);
+                    System.out.println("These places are covered with convenient service! ");
+                    printLocations(mstPath, res);
+//                    String attractionsStr = in.nextLine();
+//                    String[] attractions = attractionsStr.split(",");
+//                    List<String> attractionList = Arrays.asList(attractions);
+//
+//                    System.out.println("Cheapest transport path: " + pMap.findCheapestTransportPath(attractionList));
+                   newSearch = true;
 
                     if (newSearch == true)
                         break;
@@ -200,7 +210,7 @@ public class MainResort {
                 System.out.println("Invalid input");
             }
 
-             */
+
         } while (true);
         in.close();
 
