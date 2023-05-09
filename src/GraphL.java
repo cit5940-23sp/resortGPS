@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 /**
  * @author OpenDSA
  *
@@ -7,6 +9,8 @@ public class GraphL implements Graph {
     private Edge[]   nodeArray;
     private Coordinates[] cordVals;
     private int      numEdge;
+
+    private HashMap<Edge, Boolean> isWheelChairFriendly = new HashMap<>();
 
 
 
@@ -135,6 +139,18 @@ public class GraphL implements Graph {
         for (curr = nodeArray[v].next; curr != null; curr = curr.next)
             temp[cnt++] = curr.vertex;
         return temp;
+    }
+
+
+    public boolean isWheelChairFriendly(int u, int v) {
+        Edge e = find(u, v);
+        return this.isWheelChairFriendly.get(e);
+    }
+
+    public void setWheelChairFriendly(int u, int v, boolean isWheel) {
+        Edge e = find(u, v);
+        isWheelChairFriendly.put(e, isWheel);
+
     }
 
     private class Edge { // Doubly linked list node

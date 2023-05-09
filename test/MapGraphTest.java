@@ -12,10 +12,6 @@ public class MapGraphTest {
     }
 
     @Test
-    public void fewestStopsPath() {
-    }
-
-    @Test
     public void getMSTPath() {
         GraphL graph = new GraphL();
         graph.init(4);
@@ -36,7 +32,4 @@ public class MapGraphTest {
 
     }
 
-    @Test
-    public void roundTripPlanning() {
-    }
 }

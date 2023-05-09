@@ -3,9 +3,8 @@ import java.util.*;
 public class MainResort {
 
     public static void main(String[] args) {
-
+    /*
         Scanner in = new Scanner(System.in);
-        /*
         String userInput;
         boolean newSearch;
         //Map pMap = new Map(); // Assuming Map is a class that handles the operations.
