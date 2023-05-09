@@ -1,7 +1,7 @@
 import java.util.HashMap;
 
 /**
- * @author OpenDSA
+ * @author Park_Navigation_Team
  *
  */
 public class GraphL implements Graph {
@@ -23,7 +23,11 @@ public class GraphL implements Graph {
     }
 
 
-    // Initialize the graph with n vertices
+    /**
+     * Initialize the graph with n vertices.
+     *
+     * @param n the number of vertices in the graph
+     */
     public void init(int n)
     {
         nodeArray = new Edge[n];
@@ -35,36 +39,61 @@ public class GraphL implements Graph {
     }
 
 
-    // Return the number of vertices
+
+    /**
+     * Returns the number of vertices in the graph.
+     *
+     * @return the number of vertices in the graph
+     */
     public int nodeCount()
     {
         return nodeArray.length;
     }
 
 
-    // Return the current number of edges
+    /**
+     * Returns the current number of edges in the graph.
+     *
+     * @return the number of edges in the graph
+     */
     public int edgeCount()
     {
         return numEdge;
     }
 
 
-    // Get the value of node with index v
+
+    /**
+     * Returns the coordinates of the vertex with index v.
+     *
+     * @param v the index of the vertex
+     * @return the coordinates of the vertex
+     */
     public Coordinates getCord(int v)
     {
         return cordVals[v];
     }
 
 
-    // Set the value of node with index v
+    /**
+     * Sets the coordinates of the vertex with index v.
+     *
+     * @param v the index of the vertex
+     * @param val the coordinates of the vertex
+     */
     public void setCord(int v, Coordinates val)
     {
         cordVals[v] = val;
     }
 
 
-    // Return the link in v's neighbor list that preceeds the
-    // one with w (or where it would be)
+    /**
+     * Returns the link in v's neighbor list that preceeds the one with w (or where it would be).
+     *
+     * @param v the index of the first vertex
+     * @param w the index of the second vertex
+     * @return the link in v's neighbor list that preceeds the one with w
+     */
     private Edge find(int v, int w)
     {
         Edge curr = nodeArray[v];
@@ -74,7 +103,13 @@ public class GraphL implements Graph {
     }
 
 
-    // Adds a new edge from node v to node w with weight wgt
+    /**
+     * Adds a new edge from node v to node w with weight wgt.
+     *
+     * @param v the index of the first vertex
+     * @param w the index of the second vertex
+     * @param wgt the weight of the edge
+     */
     public void addEdge(int v, int w, int wgt)
     {
         if (wgt == 0)
@@ -93,7 +128,13 @@ public class GraphL implements Graph {
     }
 
 
-    // Get the weight value for an edge
+    /**
+
+     Gets the weight value of the edge between vertices v and w.
+     @param v the starting vertex
+     @param w the ending vertex
+     @return the weight value of the edge, or 0 if the edge does not exist
+     */
     public int weight(int v, int w)
     {
         Edge curr = find(v, w);
@@ -104,7 +145,13 @@ public class GraphL implements Graph {
     }
 
 
-    // Removes the edge from the graph.
+
+    /**
+     *
+     Removes the edge between vertex v and vertex w from the graph.
+     @param v the index of the first vertex
+     @param w the index of the second vertex
+     */
     public void removeEdge(int v, int w)
     {
         Edge curr = find(v, w);
@@ -120,14 +167,25 @@ public class GraphL implements Graph {
     }
 
 
-    // Returns true iff the graph has the edge
+    /**
+
+     Returns true if and only if the graph has the edge between vertices v and w
+     @param v the vertex where the edge starts
+     @param w the vertex where the edge ends
+     @return true if the edge between vertices v and w exists in the graph, false otherwise
+     */
     public boolean hasEdge(int v, int w)
     {
         return weight(v, w) != 0;
     }
 
 
-    // Returns an array containing the indicies of the neighbors of v
+    /**
+
+     Returns an array containing the indices of the neighbors of the vertex with index v.
+     @param v the index of the vertex
+     @return an array of integers representing the indices of the neighbors of the vertex with index v
+     */
     public int[] neighbors(int v)
     {
         int cnt = 0;
@@ -142,6 +200,13 @@ public class GraphL implements Graph {
     }
 
 
+    /**
+
+     Checks whether the edge from node u to node v is wheelchair-friendly.
+     @param u the start vertex of the edge
+     @param v the end vertex of the edge
+     @return true if the edge is wheelchair-friendly, false otherwise
+     */
     public boolean isWheelChairFriendly(int u, int v) {
         Edge e = find(u, v);
         // Check if the edge is present in the HashMap and return the corresponding value.
@@ -150,6 +215,14 @@ public class GraphL implements Graph {
         return isFriendly != null ? isFriendly : false;
     }
 
+
+    /**
+
+     Sets the wheelchair accessibility of the edge between nodes u and v to the specified value.
+     @param u the starting node of the edge
+     @param v the ending node of the edge
+     @param isWheel a boolean representing whether the edge is wheelchair accessible or not
+     */
     public void setWheelChairFriendly(int u, int v, boolean isWheel) {
         Edge e = find(u, v);
         isWheelChairFriendly.put(e, isWheel);

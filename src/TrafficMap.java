@@ -1,5 +1,8 @@
 import java.util.*;
 
+/**
+ * Constructs a TrafficMap object with the given graph.
+ */
 public class TrafficMap {
     GraphL g;
 
@@ -10,6 +13,15 @@ public class TrafficMap {
         this.g = g;
     }
 
+    /**
+     Helper method to find the next vertex in the Dijkstra's algorithm for generating suggestions.
+     Given the set of nodes and their shortest distances,
+     it returns the node with the minimum distance
+     from the starting vertex.
+     @param nodes A set of nodes.
+     @param shortest A map with the shortest distances of each node from the starting vertex.
+     @return The next vertex to visit according to Dijkstra's algorithm.
+     */
     private int nextVertex(HashSet<Integer> nodes, Map<Integer, Integer> shortest) {
         int nextVertex = 0;
         double minDis = Integer.MAX_VALUE;
@@ -28,33 +40,31 @@ public class TrafficMap {
     /**
      * returns the neighbor attractions
      *
-     * @param id
-     * @return
+     * @param id node
+     * @return list of neighbors
      */
     public int[] getNeighbors(int id) {
         return this.g.neighbors(id);
     }
 
     /**
-     * Dijkstra's algorithm find out shortest path from a given vertex
+     * Dijkstra's algorithm find out the shortest path from a given vertex
      * as the user tours, edges can get updated
      * return a list of most similar attractions
      *
-     * @param src
-     * @return
+     * @param src source
+     * @return simList
      */
     public List<Integer> generateSuggestions(int src) {
         Map<Integer, Integer> delEdges = new HashMap<>();
-        // Dijkstra's algorithm to find the shortest path
         int nodeCount = this.g.nodeCount();
-        //System.out.println(nodeCount);
 
         Map<Integer, Integer> shortest = new HashMap<>();
         Map<Integer, Integer> pred = new HashMap<>();
         HashSet<Integer> nodes = new HashSet<>();
 
         // creates shortest and pred array for the attractions
-        for (int i = 1; i < nodeCount; i ++) {
+        for (int i = 1; i < nodeCount; i++) {
             nodes.add(i);
             if (i == src) {
                 shortest.put(i, 0);
@@ -69,7 +79,7 @@ public class TrafficMap {
 
         while (nodes.size() != 0) {
             nodes.remove(u);
-            for (int v: this.getNeighbors(u)) {
+            for (int v : this.getNeighbors(u)) {
                 // remove edge in the other direction
                 delEdges.put(v, u);
                 this.g.removeEdge(v, u);
@@ -88,12 +98,7 @@ public class TrafficMap {
         }
 
         List<Map.Entry<Integer, Integer>> scoreList = new ArrayList<>(shortest.entrySet());
-        Collections.sort(scoreList, new Comparator<Map.Entry<Integer, Integer>>() {
-            @Override
-            public int compare(Map.Entry<Integer, Integer> e1, Map.Entry<Integer, Integer> e2) {
-                return e2.getValue().compareTo(e1.getValue());
-            }
-        });
+        scoreList.sort((e1, e2) -> e2.getValue().compareTo(e1.getValue()));
 
         List<Integer> simList = new ArrayList<>();
         for (Map.Entry<Integer, Integer> entry : scoreList) {
@@ -101,7 +106,6 @@ public class TrafficMap {
         }
         this.suggestionList = simList;
 
-        //System.out.println(simList);
         return simList;
     }
 

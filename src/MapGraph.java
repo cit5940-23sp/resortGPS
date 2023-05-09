@@ -7,6 +7,15 @@ public class MapGraph {
         this.g = g;
     }
 
+    /**
+     Returns a list of indices of attractions that are covered by a rectangle defined
+     by the upper left corner point (ulX, ulY) and the lower right corner point (lrX, lrY).
+     @param ulX The x-coordinate of the upper left corner point of the rectangle.
+     @param ulY The y-coordinate of the upper left corner point of the rectangle.
+     @param lrX The x-coordinate of the lower right corner point of the rectangle.
+     @param lrY The y-coordinate of the lower right corner point of the rectangle.
+     @return A list of indices of attractions covered by the given rectangle.
+     */
     public List<Integer> covered(int ulX, int ulY, int lrX, int lrY) {
 
         int size = this.g.nodeCount();
@@ -25,7 +34,13 @@ public class MapGraph {
 
     }
 
-
+    /**
+     Calculates the heuristic value between two nodes, which is the estimated distance
+     between them.
+     @param currentNode the current node
+     @param destNode the destination node
+     @return the heuristic value between the two nodes
+     */
     private double heuristic(int currentNode, int destNode) {
 
         double actualWeight = g.weight(currentNode, destNode);
@@ -41,10 +56,16 @@ public class MapGraph {
             return actualWeight;
         }
         return eucDistance;
-
-
     }
 
+
+    /**
+     * Finds the shortest distance path between two nodes using A* search algorithm.
+     *
+     * @param src  the source node
+     * @param dest the destination node
+     * @return a List of Integers representing the path from the source to destination node, or null if no path exists
+     */
     // Euclidean Distance
     public List<Integer> shortestDistancePath(int src, int dest) {
         // A*
@@ -155,6 +176,14 @@ public class MapGraph {
         return mstEdges;
     }
 
+    /**
+     Returns the minimum spanning tree path from the given source node using Prim's algorithm.
+     The minimum spanning tree is obtained by finding the edges that have the minimum weight
+     between nodes until all nodes are visited.
+     Then, the MST path is constructed using a depth-first search algorithm.
+     @param src the source node to start the MST path from
+     @return a list of integers representing the MST path
+     */
     public List<Integer> getMSTPath(int src) {
         List<Edge> mstEdges = findAllDestinations(src);
         Map<Integer, List<Integer>> mstAdjList = new HashMap<>();
@@ -174,6 +203,13 @@ public class MapGraph {
         return mstPath;
     }
 
+    /**
+     Helper method for performing DFS in the MST to get the path from the source node to all other nodes.
+     @param node the current node being visited
+     @param adjList the adjacency list representation of the MST
+     @param path the list storing the MST path from source node
+     @param visited the set of visited nodes in the MST
+     */
     private void dfsForMst(int node, Map<Integer, List<Integer>> adjList, List<Integer> path, Set<Integer> visited) {
         path.add(node);
         visited.add(node);
@@ -188,6 +224,14 @@ public class MapGraph {
         }
     }
 
+
+    /**
+     Helper method for performing DFS on the graph to find all attractions that can be visited within a given time limit.
+     @param v the current node being visited
+     @param visited the array representing visited nodes
+     @param timeLimit the remaining time for the trip
+     @param attractions the list storing the visited attractions
+     */
     private void DFS(int v, int[] visited, int timeLimit, List<Integer> attractions) {
         visited[v] = 1; // mark current node as visited
 
@@ -205,6 +249,12 @@ public class MapGraph {
     }
 
     // Recommend attractions that can be visited within the time window
+    /**
+     This method recommends attractions based on a starting attraction and a time limit.
+     @param startingAttraction the attraction to start from
+     @param timeLimit the maximum amount of time available
+     @return a list of recommended attractions that can be visited within the time limit
+     */
     public List<Integer> recommendAttractions(int startingAttraction, int timeLimit) {
         // array to keep track of visited nodes
         int[] visited = new int[this.g.nodeCount()];

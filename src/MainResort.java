@@ -2,6 +2,11 @@ import java.util.*;
 
 public class MainResort {
 
+    /**
+     Prints the locations of a given list of attraction IDs, based on a map that associates each attraction ID to its name.
+     @param ids the list of attraction IDs
+     @param idLocationMap the map that associates each attraction ID to its name
+     */
     public static void printLocations(List<Integer> ids, Map<Integer, String> idLocationMap) {
         StringBuilder output = new StringBuilder();
 
@@ -21,6 +26,14 @@ public class MainResort {
         System.out.println(output.toString());
     }
 
+    /**
+     * Prints the names from the namesMap in a table format with given rows and columns.
+     * If a name is not present for a particular index, it prints a blank space.
+     *
+     * @param namesMap a map of Integer IDs and corresponding names
+     * @param rows the number of rows in the table
+     * @param columns the number of columns in the table
+     */
     public static void printNamesInTable(Map<Integer, String> namesMap, int rows, int columns) {
         int currentIndex = 1;
         for (int i = 0; i < rows; i++) {
@@ -46,29 +59,6 @@ public class MainResort {
 
     public static void main(String[] args) {
 
-//        Map<Integer, List<Integer>> little = new HashMap<>();
-//        List<Integer> listOne = new ArrayList<>();
-//        listOne.add(3);
-//        listOne.add(8);
-//        listOne.add(9);
-//        little.put(1, listOne);
-//
-//        // create map two
-//        Map<Integer, List<Integer>> big = new HashMap<>();
-//        List<Integer> listTwo = new ArrayList<>();
-//        listTwo.add(2);
-//        listTwo.add(4);
-//        listTwo.add(11);
-//        big.put(2, listTwo);
-//
-//        // create map three
-//        Map<Integer, List<Integer>> everyone = new HashMap<>();
-//        List<Integer> listThree = new ArrayList<>();
-//        listThree.add(5);
-//        listThree.add(6);
-//        listThree.add(7);
-//        listThree.add(10);
-//        everyone.put(3, listThree);
         List<Integer> listOne = new ArrayList<>();
         listOne.add(3);
         listOne.add(8);
@@ -107,21 +97,20 @@ public class MainResort {
         GraphMaker names = new GraphMaker();
         HashMap<Integer, String> res  = names.readNames("real_map_names.mtx");
 
-        System.out.println("------------------------------------------------------------------");
-        System.out.println("------------------------Welcome to our park!----------------------");
-        System.out.println("------------------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------------");
+        System.out.println("--------------------------------Welcome to our park!------------------------------");
+        System.out.println("----------------------------------------------------------------------------------");
 
         System.out.println("This is the park GPS.");
         System.out.println("We have the following attractions.");
         System.out.println("You can use our GPS to go anywhere you want!");
-        System.out.println("------------------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------------");
 
 
         printNamesInTable(res, 4, 3);
 
-        System.out.println("------------------------------------------------------------------");
-        System.out.println("------------------------------------------------------------------");
-
+        System.out.println("----------------------------------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------------");
         Scanner in = new Scanner(System.in);
         String userInput;
         boolean newSearch;
@@ -140,35 +129,34 @@ public class MainResort {
             if (userInput.equals("q"))
                 break;
             else if (userInput.equals("1")) {
-                System.out.println("------------------------------------------------------------------");
-                System.out.println("------------------------------------------------------------------");
+                System.out.println("----------------------------------------------------------------------------------");
+                System.out.println("----------------------------------------------------------------------------------");
                 in.nextLine();
                 // For the starting location
-                System.out.println();
                 printNamesInTable(res, 4, 3);
                 System.out.println("Please enter the starting location:");
                 int startLoc = Integer.valueOf(in.nextLine());
 
-                System.out.println("------------------------------------------------------------------");
+                System.out.println("----------------------------------------------------------------------------------");
                 // For the destination
                 printNamesInTable(res, 4, 3);
                 System.out.println("Please enter the destination:");
                 int endLoc = Integer.valueOf(in.nextLine());
 
-                System.out.println("------------------------------------------------------------------");
+                System.out.println("----------------------------------------------------------------------------------");
 
                 System.out.print("Sound great! You're going from");
                 System.out.print(res.get(startLoc));
                 System.out.print(" to ");
                 System.out.println(res.get(endLoc));
-                System.out.println("------------------------------------------------------------------");
+                System.out.println("----------------------------------------------------------------------------------");
 
                 System.out.println("The suggested shortest path is: ");
                 // Now you can use startLoc and endLoc in your code
                 List<Integer> shortestPaths = physicalMap.shortestDistancePath(startLoc, endLoc);
                 printLocations(shortestPaths, res);
-                System.out.println("------------------------------------------------------------------");
-                System.out.println("------------------------------------------------------------------");
+                System.out.println("----------------------------------------------------------------------------------");
+                System.out.println("----------------------------------------------------------------------------------");
 
             }
 
@@ -187,14 +175,15 @@ public class MainResort {
                     }
 
                 }
+                System.out.println("----------------------------------------------------------------------------------");
                 System.out.println("The least traffic places you can go to is: ");
                 for (int stop: suggestionRes) {
                     System.out.println(res.get(stop));
 
                 }
 
-                System.out.println("------------------------------------------------------------------");
-                System.out.println("------------------------------------------------------------------");
+                System.out.println("----------------------------------------------------------------------------------");
+                System.out.println("----------------------------------------------------------------------------------");
 
 
             }
@@ -202,7 +191,7 @@ public class MainResort {
             else if (userInput.equals("3")) {
                 in.nextLine(); // Consume the newline character after the user input
                 // Ask the user to enter the time frame in minutes
-                System.out.println();
+                System.out.println("----------------------------------------------------------------------------------");
                 System.out.println("Please enter the upper left X boundary:");
                 int upperLeftX = in.nextInt(); // Store the user's input into the timeFrame integer
                 System.out.println("Please enter the upper left Y boundary:");
@@ -212,11 +201,10 @@ public class MainResort {
                 int botRightX = in.nextInt(); // Store the user's input into the timeFrame integer
                 System.out.println("Please enter the lower right Y boundary:");
                 int botRightY = in.nextInt(); // Store the user's input into the timeFrame integer
-                System.out.println();
 
                 System.out.println("Please enter the type of attractions:");
                 System.out.println("1: Big thrill; 2. Fun for little ones; 3. For everyone.");
-
+                System.out.println("----------------------------------------------------------------------------------");
                 int type = in.nextInt(); // Store the user's input into the timeFrame integer
 
                 // call function
@@ -246,24 +234,25 @@ public class MainResort {
                         }
                     }
                 }
-
+                System.out.println("----------------------------------------------------------------------------------");
                 System.out.println("Here are the attractions within the boundary you input");
                 for (int a : filteredList) {
                     System.out.println(res.get(a));
                 }
+                System.out.println("----------------------------------------------------------------------------------");
             }
             else if (userInput.equals("4")) {
                 in.nextLine();
                 do {
-                    System.out.println();
-                    System.out.println("------------------------------------------------------------------");
-                    System.out.println("------------------------------------------------------------------");
+                    System.out.println("----------------------------------------------------------------------------------");
+                    System.out.println("----------------------------------------------------------------------------------");
                     System.out.println("Our park wants to create an inclusive and enjoyable theme park " );
                     System.out.println("experience for all visitors, regardless of their mobility needs.");
                     System.out.println("Just let me know where you are, I will provide everywhere that you can go :)");
                     System.out.println("Please input your position, eg : 1");
                     int srcNode = Integer.valueOf(in.nextLine());
                     List<Integer> mstPath = physicalMap.getMSTPath(srcNode);
+                    System.out.println("----------------------------------------------------------------------------------");
                     System.out.println("These places are covered with convenient service! ");
                     printLocations(mstPath, res);
 //                    String attractionsStr = in.nextLine();
@@ -283,8 +272,12 @@ public class MainResort {
 
         } while (true);
         in.close();
+        System.out.println("Thanks for visiting our park. Hope to see you next time!");
+        System.out.println("----------------------------------------------------------------------------------");
+        System.out.println("----------------------------------------------------------------------------------");
 
         }
+
 
 }
 
